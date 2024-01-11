@@ -1,0 +1,163 @@
+diff -urNp old/plug-ins/pygimp/plug-ins/benchmark-foreground-extract.py new/plug-ins/pygimp/plug-ins/benchmark-foreground-extract.py
+--- old/plug-ins/pygimp/plug-ins/benchmark-foreground-extract.py	2018-05-22 13:09:58.522351307 +0200
++++ new/plug-ins/pygimp/plug-ins/benchmark-foreground-extract.py	2018-05-22 13:13:20.132412856 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ 
+ #   Foreground Extraction Benchmark
+ #   Copyright 2005  Sven Neumann <sven@gimp.org>
+diff -urNp old/plug-ins/pygimp/plug-ins/clothify.py new/plug-ins/pygimp/plug-ins/clothify.py
+--- old/plug-ins/pygimp/plug-ins/clothify.py	2018-05-22 13:09:58.522351307 +0200
++++ new/plug-ins/pygimp/plug-ins/clothify.py	2018-05-22 13:13:30.123366531 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ 
+ #   Gimp-Python - allows the writing of Gimp plugins in Python.
+ #   Copyright (C) 1997  James Henstridge <james@daa.com.au>
+diff -urNp old/plug-ins/pygimp/plug-ins/colorxhtml.py new/plug-ins/pygimp/plug-ins/colorxhtml.py
+--- old/plug-ins/pygimp/plug-ins/colorxhtml.py	2018-05-22 13:09:58.521351312 +0200
++++ new/plug-ins/pygimp/plug-ins/colorxhtml.py	2018-05-22 13:11:58.188793396 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ 
+ #   Gimp-Python - allows the writing of Gimp plugins in Python.
+ #   Copyright (C) 2003, 2005  Manish Singh <yosh@gimp.org>
+diff -urNp old/plug-ins/pygimp/plug-ins/file-openraster.py new/plug-ins/pygimp/plug-ins/file-openraster.py
+--- old/plug-ins/pygimp/plug-ins/file-openraster.py	2018-05-22 13:09:58.521351312 +0200
++++ new/plug-ins/pygimp/plug-ins/file-openraster.py	2018-05-22 13:10:57.468076133 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ 
+ # GIMP Plug-in for the OpenRaster file format
+ # http://create.freedesktop.org/wiki/OpenRaster
+diff -urNp old/plug-ins/pygimp/plug-ins/foggify.py new/plug-ins/pygimp/plug-ins/foggify.py
+--- old/plug-ins/pygimp/plug-ins/foggify.py	2018-05-22 13:09:58.522351307 +0200
++++ new/plug-ins/pygimp/plug-ins/foggify.py	2018-05-22 13:11:44.843855476 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ 
+ #   Gimp-Python - allows the writing of Gimp plugins in Python.
+ #   Copyright (C) 1997  James Henstridge <james@daa.com.au>
+diff -urNp old/plug-ins/pygimp/plug-ins/gradients-save-as-css.py new/plug-ins/pygimp/plug-ins/gradients-save-as-css.py
+--- old/plug-ins/pygimp/plug-ins/gradients-save-as-css.py	2018-05-22 13:09:58.521351312 +0200
++++ new/plug-ins/pygimp/plug-ins/gradients-save-as-css.py	2018-05-22 13:11:34.716902608 +0200
+@@ -1,4 +1,4 @@
+-#! /usr/bin/env python
++#! /usr/bin/env python2
+ # -*- coding: utf-8 -*-
+ 
+ #   Allows saving (TODO: and loading) CSS gradient files
+@@ -101,4 +101,4 @@ register(
+         menu="<Gradients>",
+         domain=("gimp20-python", gimp.locale_directory)
+         )
+-main()
+\ Chybí znak konce řádku na konci souboru
++main()
+diff -urNp old/plug-ins/pygimp/plug-ins/palette-offset.py new/plug-ins/pygimp/plug-ins/palette-offset.py
+--- old/plug-ins/pygimp/plug-ins/palette-offset.py	2018-05-22 13:09:58.521351312 +0200
++++ new/plug-ins/pygimp/plug-ins/palette-offset.py	2018-05-22 13:12:38.003608362 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ # -*- coding: utf-8 -*-
+ #    This program is free software: you can redistribute it and/or modify
+ #   it under the terms of the GNU General Public License as published by
+diff -urNp old/plug-ins/pygimp/plug-ins/palette-sort.py new/plug-ins/pygimp/plug-ins/palette-sort.py
+--- old/plug-ins/pygimp/plug-ins/palette-sort.py	2018-05-22 13:09:58.522351307 +0200
++++ new/plug-ins/pygimp/plug-ins/palette-sort.py	2018-05-22 13:11:10.469015537 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This program is free software: you can redistribute it and/or modify
+ # it under the terms of the GNU General Public License as published by
+diff -urNp old/plug-ins/pygimp/plug-ins/palette-to-gradient.py new/plug-ins/pygimp/plug-ins/palette-to-gradient.py
+--- old/plug-ins/pygimp/plug-ins/palette-to-gradient.py	2018-05-22 13:09:58.522351307 +0200
++++ new/plug-ins/pygimp/plug-ins/palette-to-gradient.py	2018-05-22 13:10:27.932213923 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ #
+ # This program is free software: you can redistribute it and/or modify
+ # it under the terms of the GNU General Public License as published by
+diff -urNp old/plug-ins/pygimp/plug-ins/py-slice.py new/plug-ins/pygimp/plug-ins/py-slice.py
+--- old/plug-ins/pygimp/plug-ins/py-slice.py	2018-05-22 13:09:58.521351312 +0200
++++ new/plug-ins/pygimp/plug-ins/py-slice.py	2018-05-22 13:10:47.796121235 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ # -*- coding: utf-8 -*-
+ 
+ #Copyright (c) Manish Singh
+diff -urNp old/plug-ins/pygimp/plug-ins/python-console.py new/plug-ins/pygimp/plug-ins/python-console.py
+--- old/plug-ins/pygimp/plug-ins/python-console.py	2018-05-22 13:09:58.522351307 +0200
++++ new/plug-ins/pygimp/plug-ins/python-console.py	2018-05-22 13:12:08.532745298 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ 
+ #   Gimp-Python - allows the writing of Gimp plugins in Python.
+ #   Copyright (C) 1997  James Henstridge <james@daa.com.au>
+diff -urNp old/plug-ins/pygimp/plug-ins/python-eval.py new/plug-ins/pygimp/plug-ins/python-eval.py
+--- old/plug-ins/pygimp/plug-ins/python-eval.py	2018-05-22 13:09:58.522351307 +0200
++++ new/plug-ins/pygimp/plug-ins/python-eval.py	2018-05-22 13:13:44.059301940 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ 
+ #   Gimp-Python - allows the writing of Gimp plugins in Python.
+ #   Copyright (C) 2006  Manish Singh <yosh@gimp.org>
+diff -urNp old/plug-ins/pygimp/plug-ins/shadow_bevel.py new/plug-ins/pygimp/plug-ins/shadow_bevel.py
+--- old/plug-ins/pygimp/plug-ins/shadow_bevel.py	2018-05-22 13:09:58.521351312 +0200
++++ new/plug-ins/pygimp/plug-ins/shadow_bevel.py	2018-05-22 13:13:56.019246529 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ 
+ #   Gimp-Python - allows the writing of Gimp plugins in Python.
+ #   Copyright (C) 1997  James Henstridge <james@daa.com.au>
+diff -urNp old/plug-ins/pygimp/plug-ins/sphere.py new/plug-ins/pygimp/plug-ins/sphere.py
+--- old/plug-ins/pygimp/plug-ins/sphere.py	2018-05-22 13:09:58.522351307 +0200
++++ new/plug-ins/pygimp/plug-ins/sphere.py	2018-05-22 13:14:14.564160649 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ 
+ #   Gimp-Python - allows the writing of Gimp plugins in Python.
+ #   Copyright (C) 1997  James Henstridge <james@daa.com.au>
+diff -urNp old/plug-ins/pygimp/plug-ins/text-brush.py new/plug-ins/pygimp/plug-ins/text-brush.py
+--- old/plug-ins/pygimp/plug-ins/text-brush.py	2018-05-22 13:09:58.521351312 +0200
++++ new/plug-ins/pygimp/plug-ins/text-brush.py	2018-05-22 13:12:49.291555951 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ # coding: utf-8
+ 
+ # Author: João Sebastião de Oliveira Bueno
+diff -urNp old/plug-ins/pygimp/plug-ins/whirlpinch.py new/plug-ins/pygimp/plug-ins/whirlpinch.py
+--- old/plug-ins/pygimp/plug-ins/whirlpinch.py	2018-05-22 13:09:58.521351312 +0200
++++ new/plug-ins/pygimp/plug-ins/whirlpinch.py	2018-05-22 13:14:24.092116544 +0200
+@@ -1,4 +1,4 @@
+-#!/usr/bin/env python
++#!/usr/bin/env python2
+ 
+ #   Gimp-Python - allows the writing of Gimp plugins in Python.
+ #   Copyright (C) 1997  James Henstridge <james@daa.com.au>
+diff -urNp old/configure new/configure
+--- old/configure	2018-06-28 08:44:29.162846929 +0200
++++ new/configure	2018-06-28 08:47:06.790148573 +0200
+@@ -23051,7 +23051,7 @@ if ${am_cv_pathless_PYTHON+:} false; the
+   $as_echo_n "(cached) " >&6
+ else
+ 
+-          for am_cv_pathless_PYTHON in python python2 python2.7  python2.6 python2.5 python2.4 python2.3 python2.2 python2.1 python2.0 none; do
++          for am_cv_pathless_PYTHON in python2 python2.7  python2.6 python2.5 python2.4 python2.3 python2.2 python2.1 python2.0 none; do
+           test "$am_cv_pathless_PYTHON" = none && break
+           prog="import sys
+ # split strings by '.' and convert to numeric.  Append some zeros
