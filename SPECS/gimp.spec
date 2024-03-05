@@ -75,7 +75,7 @@ Summary:        GNU Image Manipulation Program
 Name:           gimp
 Epoch:          2
 Version:        2.8.22
-Release:        %{?prerelprefix}15%{dotprerel}%{dotgitrev}%{?dist}
+Release:        %{?prerelprefix}25%{dotprerel}%{dotgitrev}%{?dist}
 
 # Compute some version related macros.
 # Ugly, need to get quoting percent signs straight.
@@ -89,10 +89,11 @@ Release:        %{?prerelprefix}15%{dotprerel}%{dotgitrev}%{?dist}
 %if ! %unstable
 %global lib_minor %(echo $[%minor * 100])
 %global lib_micro %micro
-%else # unstable
+%else
+# unstable
 %global lib_minor %(echo $[%minor * 100 + %{micro}])
 %global lib_micro 0
-%endif # unstable
+%endif
 
 %if %{with poppler}
 # poppler is "GPLv2 or GPLv3" which makes plug-ins linking to libpoppler such
@@ -209,6 +210,14 @@ Patch7: gimp-2.8.22-CVE-2017-17788.patch
 Patch8: gimp-2.8.22-CVE-2017-17789.patch
 
 Patch9: gimp-2.8.22-python.patch
+Patch10: gimp-CVE-2022-30067.patch
+Patch11: gimp-CVE-2022-32990.patch
+Patch12: gimp-buffer-overflow.patch
+#Patch13: gimp-2.8.22-python-path.patch
+Patch14: gimp-CVE-2023-44442.patch
+Patch15: gimp-CVE-2023-44444.patch
+Patch16: gimp-2.8.22-fix-fclose-leak.patch
+
 # use external help browser directly if help browser plug-in is not built
 Patch100:       gimp-2.8.6-external-help-browser.patch
 
@@ -302,6 +311,13 @@ EOF
 %patch7 -p1 -b .CVE-17788
 %patch8 -p1 -b .CVE-17789
 %patch9 -p1
+%patch10 -p1 -b .CVE-2022-30067
+%patch11 -p1 -b .CVE-2022-32990
+%patch12 -p1 -b .buffer-overflow
+#%patch13 -p1 -b .python-path
+%patch14 -p1 -b .CVE-2023-44442
+%patch15 -p1 -b .CVE-2023-44444
+%patch16 -p1 -b .fclose-leak
 
 %if ! %{with helpbrowser}
 %patch100 -p1 -b .external-help-browser
@@ -361,7 +377,7 @@ autoreconf
 %ifos linux
     --with-linux-input \
 %endif
-%if use_poppler
+%if %{with poppler}
     --with-poppler \
 %else
     --without-poppler \
@@ -641,6 +657,38 @@ make check
 %endif
 
 %changelog
+* Thu Jan 25 2024 Masahiro Matsuya <mmatsuya@redhat.com> - 2:2.8.22-25
+- fix CVE-2023-44442
+- fix CVE-2023-44444
+- disable gimp-2.8.22-python-path.patch required for flatpak
+- partially cherry-pick from upstream commit 2987f012 to fix fclose leak
+  Resolves: RHEL-17048 RHEL-17060
+
+* Fri Feb 17 2023 Josef Ridky <jridky@redhat.com> - 2:2.8.22-24
+- fallback to RPM gegl
+
+* Fri Feb 17 2023 Josef Ridky <jridky@redhat.com> - 2:2.8.22-23
+- enforce gegl04
+
+* Fri Feb 17 2023 Josef Ridky <jridky@redhat.com> - 2:2.8.22-22
+- change gegl requirement to  gegl04
+
+* Thu Feb 16 2023 Josef Ridky <jridky@redhat.com> - 2:2.8.22-21
+- set manual shebang in python files
+
+* Thu Feb 16 2023 Josef Ridky <jridky@redhat.com> - 2:2.8.22-20
+- fix python path in source code
+
+* Wed Jan 11 2023 Josef Ridky <jridky@redhat.com> - 2:2.8.22-19
+- fix CVE-2022-32990 (#2104192)
+- fix buffer overflow (#2143177)
+
+* Tue Dec 06 2022 Josef Ridky <jridky@redhat.com> - 2:2.8.22-18
+- fix CVE-2022-30067 (#2091200)
+
+* Mon Aug 29 2022 Josef Ridky <jridky@redhat.com> - 2:2.8.22-17
+- spec bump
+
 * Wed Sep 12 2018 Josef Ridky <jridky@redhat.com> - 2:2.8.22-15
 - rebuild for removing pygtk2-libglade
 
