@@ -75,7 +75,7 @@ Summary:        GNU Image Manipulation Program
 Name:           gimp
 Epoch:          2
 Version:        2.8.22
-Release:        %{?prerelprefix}25%{dotprerel}%{dotgitrev}%{?dist}
+Release:        %{?prerelprefix}26%{dotprerel}%{dotgitrev}%{?dist}
 
 # Compute some version related macros.
 # Ugly, need to get quoting percent signs straight.
@@ -657,6 +657,9 @@ make check
 %endif
 
 %changelog
+* Fri Jan 10 2025 Josef Ridky <jridky@redhat.com> - 2:2.28.22-26
+- bump spec
+
 * Thu Jan 25 2024 Masahiro Matsuya <mmatsuya@redhat.com> - 2:2.8.22-25
 - fix CVE-2023-44442
 - fix CVE-2023-44444
