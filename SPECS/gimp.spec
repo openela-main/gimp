@@ -249,16 +249,16 @@ Patch5:         gimp-CVE-2022-30067.patch
 # CVE-2022-32990
 Patch6:         gimp-CVE-2022-32990.patch
 
-# RHEL-17040: dds buffer overflow RCE
+# RHEL-86048: dds buffer overflow RCE
 Patch7:         gimp-2.10.36-CVE-2023-44441-dds-rce.patch
 
-# RHEL-17049: psd buffer overflow RCE
+# RHEL-86045: psd buffer overflow RCE
 Patch8:         gimp-2.10.36-CVE-2023-44442-psd-rce.patch
 
-# RHEL-17052: psp buffer overflow RCE
+# RHEL-86042: psp buffer overflow RCE
 Patch9:         gimp-2.10.36-CVE-2023-44443-psp-rce.patch
 
-# RHEL-17061: psp buffer overflow RCE
+# RHEL-86039: psp buffer overflow RCE
 Patch10:         gimp-2.10.36-CVE-2023-44444-psp-rce.patch
 
 # use external help browser directly if help browser plug-in is not built
@@ -752,10 +752,10 @@ make check %{?_smp_mflags}
 %endif
 
 %changelog
-* Mon Jan 29 2024 Jorge San Emeterio <jsanemet@redhat.com> - 2:2.99.8-4
+* Fri Apr 04 2025 Josef Ridky <jridky@redhat.com> - 2:2.99.8-4
 - Applying fixes for vulnerabilities that led to possible RCE conditions.
 - Fixes: CVE-2023-44441 CVE-2023-44442 CVE-2023-44443 CVE-2023-44444
-- Resolves: RHEL-17042 RHEL-17051 RHEL-17054 RHEL-17063
+- Resolves: RHEL-86048 RHEL-86045 RHEL-86042 RHEL-86039
 
 * Mon Jul 18 2022 Josef Ridky <jridky@redhat.com> - 2:2.99.8-3
 - fix CVE-2022-30067
