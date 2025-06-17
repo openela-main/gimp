@@ -75,7 +75,7 @@ Summary:        GNU Image Manipulation Program
 Name:           gimp
 Epoch:          2
 Version:        2.8.22
-Release:        %{?prerelprefix}26%{dotprerel}%{dotgitrev}%{?dist}
+Release:        %{?prerelprefix}26%{dotprerel}%{dotgitrev}%{?dist}.2
 
 # Compute some version related macros.
 # Ugly, need to get quoting percent signs straight.
@@ -217,6 +217,9 @@ Patch12: gimp-buffer-overflow.patch
 Patch14: gimp-CVE-2023-44442.patch
 Patch15: gimp-CVE-2023-44444.patch
 Patch16: gimp-2.8.22-fix-fclose-leak.patch
+Patch17: gimp-CVE-2025-48797.patch
+Patch18: gimp-CVE-2025-48798.patch
+Patch19: gimp-CVE-2025-5473.patch
 
 # use external help browser directly if help browser plug-in is not built
 Patch100:       gimp-2.8.6-external-help-browser.patch
@@ -314,10 +317,13 @@ EOF
 %patch10 -p1 -b .CVE-2022-30067
 %patch11 -p1 -b .CVE-2022-32990
 %patch12 -p1 -b .buffer-overflow
-#%patch13 -p1 -b .python-path
+#patch13 -p1 -b .python-path
 %patch14 -p1 -b .CVE-2023-44442
 %patch15 -p1 -b .CVE-2023-44444
 %patch16 -p1 -b .fclose-leak
+%patch17 -p1 -b .CVE-2025-48797
+%patch18 -p1 -b .CVE-2025-48798
+%patch19 -p1 -b .CVE-2025-5473
 
 %if ! %{with helpbrowser}
 %patch100 -p1 -b .external-help-browser
@@ -657,6 +663,13 @@ make check
 %endif
 
 %changelog
+* Sat Jun 14 2025 Josef Ridky <jridky@redhat.com> - 2:2.8.22-26.2
+- fix CVE-2025-5473 (RHEL-95696)
+
+* Sat Jun 14 2025 Josef Ridky <jridky@redhat.com> - 2:2.8.22-26.1
+- fix CVE-2025-48797 (RHEL-93503)
+- fix CVE-2025-48798 (RHEL-93506)
+
 * Fri Jan 10 2025 Josef Ridky <jridky@redhat.com> - 2:2.28.22-26
 - bump spec
 
