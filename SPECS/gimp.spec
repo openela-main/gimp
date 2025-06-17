@@ -89,7 +89,7 @@ Name:           gimp
 Epoch:          2
 Version:        2.99.8
 %global rel 4
-Release:        %{?prerelprefix}%{rel}%{dotprerel}%{dotgitrev}%{?dist}
+Release:        %{?prerelprefix}%{rel}%{dotprerel}%{dotgitrev}%{?dist}.2
 
 # Compute some version related macros.
 # Ugly, need to get quoting percent signs straight.
@@ -261,6 +261,15 @@ Patch9:         gimp-2.10.36-CVE-2023-44443-psp-rce.patch
 # RHEL-86040: psp buffer overflow RCE
 Patch10:         gimp-2.10.36-CVE-2023-44444-psp-rce.patch
 
+# RHEL-93521: CVE-2025-48797
+Patch11:        gimp-CVE-2025-48797.patch
+
+# RHEL-93522: CVE-2025-48798
+Patch12:        gimp-CVE-2025-48798.patch
+
+# RHEL-95700: CVE-2025-5473
+Patch13:        gimp-CVE-2025-5473.patch
+
 # use external help browser directly if help browser plug-in is not built
 Patch100:       gimp-2.10.24-external-help-browser.patch
 
@@ -370,9 +379,12 @@ EOF
 %patch8 -p1 -b .psd-rce
 %patch9 -p1 -b .psp-rce1
 %patch10 -p1 -b .psp-rce2
+%patch11 -p1 -b .CVE-2025-48797
+%patch12 -p1 -b .CVE-2025-48798
+%patch13 -p1 -b .CVE-2025-5473
 
 %if ! %{with helpbrowser}
-#%patch100 -p1 -b .external-help-browser
+#patch100 -p1 -b .external-help-browser
 %endif
 
 %build
@@ -752,6 +764,13 @@ make check %{?_smp_mflags}
 %endif
 
 %changelog
+* Sat Jun 14 2025 Josef Ridky <jridky@redhat.com> - 2:2.99.8-4.2
+- fix CVE-2025-5473 (RHEL-95700)
+
+* Sat Jun 14 2025 Josef Ridky <jridky@redhat.com> - 2:2.99.8-4.1
+- fix CVE-2025-48797 (RHEL-93521)
+- fix CVE-2025-48798 (RHEL-93522)
+
 * Wed Apr 09 2025 Josef Ridky <jridky@redhat.com> - 2:2.99.8-4
 - Applying fixes for vulnerabilities that led to possible RCE conditions.
 - Fixes: CVE-2023-44441 CVE-2023-44442 CVE-2023-44443 CVE-2023-44444
