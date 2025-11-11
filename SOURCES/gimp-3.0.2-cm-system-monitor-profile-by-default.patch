@@ -1,0 +1,26 @@
+diff -urNp old/etc/gimprc.in new/etc/gimprc.in
+--- old/etc/gimprc.in	2025-05-02 16:05:59.766235164 +0200
++++ new/etc/gimprc.in	2025-05-02 16:08:52.117193144 +0200
+@@ -316,9 +316,9 @@
+ 
+ # Defines the color management behavior.  This is a parameter list.
+ # 
+-# (color-management
++ (color-management
+ #     (mode display)
+-#     (display-profile-from-gdk no)
++     (display-profile-from-gdk no)
+ #     (display-rendering-intent relative-colorimetric)
+ #     (display-use-black-point-compensation yes)
+ #     (display-optimize yes)
+@@ -326,7 +326,9 @@
+ #     (simulation-use-black-point-compensation no)
+ #     (simulation-optimize yes)
+ #     (simulation-gamut-check no)
+-#     (out-of-gamut-color (color-rgb 1 0 1)))
++#     (out-of-gamut-color (color-rgb 1 0 1))
++      (display-module "CdisplayLcms")
++)
+ 
+ # Keep a permanent record of all opened and saved files in the Recent
+ # Documents list.  Possible values are yes and no.

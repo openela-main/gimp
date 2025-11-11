@@ -1,0 +1,153 @@
+diff -urNp a/app/core/gimpimage-colormap.c b/app/core/gimpimage-colormap.c
+--- a/app/core/gimpimage-colormap.c	2025-05-20 09:08:24.351925471 +0200
++++ b/app/core/gimpimage-colormap.c	2025-05-20 09:20:42.372348093 +0200
+@@ -328,9 +328,8 @@ gimp_image_colormap_is_index_used (GimpI
+   num_processors = GIMP_GEGL_CONFIG (image->gimp->config)->num_processors;
+   layers         = gimp_image_get_layer_list (image);
+ 
+-  pool = g_thread_pool_new_full ((GFunc) gimp_image_colormap_thread_is_index_used,
++  pool = g_thread_pool_new ((GFunc) gimp_image_colormap_thread_is_index_used,
+                                  GINT_TO_POINTER (color_index),
+-                                 (GDestroyNotify) g_free,
+                                  num_processors, TRUE, NULL);
+   for (iter = layers; iter; iter = g_list_next (iter))
+     {
+diff -urNp a/app/core/gimpitemlist.c b/app/core/gimpitemlist.c
+--- a/app/core/gimpitemlist.c	2025-05-20 09:08:24.354925484 +0200
++++ b/app/core/gimpitemlist.c	2025-05-20 09:20:03.980745485 +0200
+@@ -629,7 +629,7 @@ gimp_item_list_get_items_by_glob (GimpIt
+   spec = g_pattern_spec_new (pattern);
+   for (iter = items; iter; iter = iter->next)
+     {
+-      if (g_pattern_spec_match_string (spec, gimp_object_get_name (iter->data)))
++      if (g_pattern_match_string (spec, gimp_object_get_name (iter->data)))
+         match = g_list_prepend (match, iter->data);
+     }
+   g_pattern_spec_free (spec);
+diff -urNp a/app/plug-in/gimpplugin.c b/app/plug-in/gimpplugin.c
+--- a/app/plug-in/gimpplugin.c	2025-05-20 09:08:24.339925418 +0200
++++ b/app/plug-in/gimpplugin.c	2025-05-20 09:19:19.516679552 +0200
+@@ -403,7 +403,7 @@ gimp_plug_in_close_waitpid (GPid
+   GError *error = NULL;
+ 
+   if (plug_in->manager->gimp->be_verbose &&
+-      ! g_spawn_check_wait_status (status, &error))
++      ! g_spawn_check_exit_status (status, &error))
+     {
+       g_printerr ("Process for plug-in '%s' terminated with error: %s\n",
+                   gimp_object_get_name (plug_in),
+diff -urNp a/app/sanity.c b/app/sanity.c
+--- a/app/sanity.c	2025-05-20 09:08:24.395925663 +0200
++++ b/app/sanity.c	2025-05-20 09:18:48.132179032 +0200
+@@ -171,7 +171,7 @@ static gchar *
+ sanity_check_glib (void)
+ {
+ #define GLIB_REQUIRED_MAJOR 2
+-#define GLIB_REQUIRED_MINOR 70
++#define GLIB_REQUIRED_MINOR 68
+ #define GLIB_REQUIRED_MICRO 0
+ 
+   const gchar *mismatch = glib_check_version (GLIB_REQUIRED_MAJOR,
+diff -urNp a/app/text/gimptext.c b/app/text/gimptext.c
+--- a/app/text/gimptext.c	2025-05-20 09:08:24.397925671 +0200
++++ b/app/text/gimptext.c	2025-05-20 09:16:10.900785765 +0200
+@@ -827,7 +827,8 @@ gimp_text_serialize_property (GimpConfig
+ 
+       for (guint i = 0; i < length; ++i)
+         {
+-          PangoAttrFontDesc *attr_font_desc = pango_attribute_as_font_desc ((PangoAttribute*)g_slist_nth_data (list, i));
++          PangoAttrFontDesc *attr_font_desc = (((PangoAttribute*)g_slist_nth_data (list, i))->klass->type == PANGO_ATTR_FONT_DESC 
++                                    ? (PangoAttrFontDesc *)g_slist_nth_data (list, i) : NULL );
+ 
+           if (attr_font_desc != NULL)
+             {
+diff -urNp a/app/text/gimptext-parasite.c b/app/text/gimptext-parasite.c
+--- a/app/text/gimptext-parasite.c	2025-05-20 09:08:24.397925671 +0200
++++ b/app/text/gimptext-parasite.c	2025-05-20 09:15:33.606149497 +0200
+@@ -131,7 +131,8 @@ gimp_text_from_parasite (const GimpParas
+ 
+                   for (guint i = 0; i < length; ++i)
+                     {
+-                      PangoAttrFontDesc *attr_font_desc = pango_attribute_as_font_desc ((PangoAttribute*)g_slist_nth_data (list, i));
++                      PangoAttrFontDesc *attr_font_desc = (((PangoAttribute*)g_slist_nth_data (list, i))->klass->type == PANGO_ATTR_FONT_DESC 
++                                      ? (PangoAttrFontDesc *)g_slist_nth_data (list, i) : NULL );
+ 
+                       if (attr_font_desc != NULL)
+                         {
+diff -urNp a/app/xcf/xcf-save.c b/app/xcf/xcf-save.c
+--- a/app/xcf/xcf-save.c	2025-05-20 09:08:24.399171071 +0200
++++ b/app/xcf/xcf-save.c	2025-05-20 09:14:35.628966564 +0200
+@@ -2389,9 +2389,8 @@ xcf_save_level (XcfInfo     *info,
+        * i.e. there is a bug in our code.
+        */
+       queue = g_async_queue_new_full ((GDestroyNotify) xcf_save_free_job_data);
+-      pool  = g_thread_pool_new_full ((GFunc) xcf_save_tile_parallel,
++      pool  = g_thread_pool_new ((GFunc) xcf_save_tile_parallel,
+                                       queue,
+-                                      (GDestroyNotify) xcf_save_free_job_data,
+                                       num_processors, TRUE, NULL);
+ 
+       i = 0;
+diff -urNp a/libgimp/gimpvectorloadprocedure.c b/libgimp/gimpvectorloadprocedure.c
+--- a/libgimp/gimpvectorloadprocedure.c	2025-05-20 09:08:24.489926072 +0200
++++ b/libgimp/gimpvectorloadprocedure.c	2025-05-20 09:13:46.148798654 +0200
+@@ -370,7 +370,7 @@ gimp_vector_load_procedure_run (GimpProc
+             }
+         }
+ 
+-      g_prefix_error_literal (&error, _("Vector image loading plug-in failed: "));
++      //g_prefix_error_literal (&error, _("Vector image loading plug-in failed: "));
+     }
+ 
+   /* One or both dimensions are still zero at this point. */
+diff -urNp a/libgimpbase/gimpchoice.c b/libgimpbase/gimpchoice.c
+--- a/libgimpbase/gimpchoice.c	2025-05-20 09:08:24.491384100 +0200
++++ b/libgimpbase/gimpchoice.c	2025-05-20 09:13:13.230538618 +0200
+@@ -454,7 +454,7 @@ gimp_param_choice_class_init (GParamSpec
+   klass->value_type     = G_TYPE_STRING;
+   klass->finalize       = gimp_param_choice_finalize;
+   klass->value_validate = gimp_param_choice_validate;
+-  klass->value_is_valid = gimp_param_choice_value_is_valid;
++  //klass->value_is_valid = gimp_param_choice_value_is_valid;
+   klass->values_cmp     = gimp_param_choice_values_cmp;
+ }
+ 
+diff -urNp a/meson.build b/meson.build
+--- a/meson.build	2025-05-20 09:08:24.256925056 +0200
++++ b/meson.build	2025-05-20 09:12:38.933510408 +0200
+@@ -432,7 +432,7 @@ gio               = dependency('gio-2.0'
+ gio_specific_name = platform_windows ? 'gio-windows-2.0' : 'gio-unix-2.0'
+ gio_specific      = dependency(gio_specific_name)
+ 
+-glib_minver       = '2.70.0'
++glib_minver       = '2.68.0'
+ glib              = dependency('glib-2.0',           version: '>='+glib_minver)
+ gi                = dependency('gobject-introspection-1.0')
+ 
+@@ -443,7 +443,7 @@ gmodule           = dependency('gmodule-
+ 
+ gtk3_minver       = '3.24.0'
+ gtk3              = dependency('gtk+-3.0',           version: '>='+gtk3_minver)
+-harfbuzz_minver   = '2.8.2'
++harfbuzz_minver   = '2.7.4'
+ harfbuzz          = dependency('harfbuzz',           version: '>='+harfbuzz_minver)
+ json_glib_minver  = '1.2.6'
+ json_glib         = dependency('json-glib-1.0',      version: '>='+json_glib_minver)
+@@ -472,7 +472,7 @@ endif
+ 
+ conf.set_quoted('MYPAINT_BRUSHES_DIR', mypaint_brushes_dir)
+ 
+-pango_minver = '1.50.0'
++pango_minver = '1.48.0'
+ if platform_osx
+   pango_macos_recommended_version = '1.55.0'
+   pango_macos_warning='''
+@@ -1837,6 +1837,8 @@ if is_git_repository
+   endif
+ endif
+ 
++conf.set('G_DEFINE_FINAL_TYPE(TN, t_n, T_P)', 'G_DEFINE_TYPE(TN, t_n, T_P)')
++
+ configure_file(
+   output: 'config.h',
+   configuration: conf

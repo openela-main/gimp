@@ -1,0 +1,12 @@
+diff -urNp old/etc/gimprc.in new/etc/gimprc.in
+--- old/etc/gimprc.in	2025-05-02 16:10:40.807797273 +0200
++++ new/etc/gimprc.in	2025-05-02 16:12:22.380006468 +0200
+@@ -824,7 +824,7 @@
+ # Sets the browser used by the help system.  Possible values are gimp and
+ # web-browser.
+ # 
+-# (help-browser gimp)
++(help-browser web-browser)
+ 
+ # The maximum number of actions saved in history.  This is an integer value.
+ # 
