@@ -75,7 +75,7 @@ Summary:        GNU Image Manipulation Program
 Name:           gimp
 Epoch:          2
 Version:        2.8.22
-Release:        %{?prerelprefix}26%{dotprerel}%{dotgitrev}%{?dist}.2
+Release:        %{?prerelprefix}26%{dotprerel}%{dotgitrev}%{?dist}.3
 
 # Compute some version related macros.
 # Ugly, need to get quoting percent signs straight.
@@ -220,6 +220,7 @@ Patch16: gimp-2.8.22-fix-fclose-leak.patch
 Patch17: gimp-CVE-2025-48797.patch
 Patch18: gimp-CVE-2025-48798.patch
 Patch19: gimp-CVE-2025-5473.patch
+Patch20: gimp-3.0.4-CVE-2025-10920-10925-10934.patch
 
 # use external help browser directly if help browser plug-in is not built
 Patch100:       gimp-2.8.6-external-help-browser.patch
@@ -324,6 +325,7 @@ EOF
 %patch17 -p1 -b .CVE-2025-48797
 %patch18 -p1 -b .CVE-2025-48798
 %patch19 -p1 -b .CVE-2025-5473
+%patch20 -p1 -b .CVE-2025-10920-10925-10934
 
 %if ! %{with helpbrowser}
 %patch100 -p1 -b .external-help-browser
@@ -663,6 +665,15 @@ make check
 %endif
 
 %changelog
+* Mon Nov 24 2025 Josef Ridky <jridky@redhat.com> - 2:2.8.22-26.3
+- fix CVE-2025-10920
+- fix CVE-2025-10921
+- fix CVE-2025-10922
+- fix CVE-2025-10923
+- fix CVE-2025-10924
+- fix CVE-2025-10925
+- fix CVE-2025-10934
+
 * Sat Jun 14 2025 Josef Ridky <jridky@redhat.com> - 2:2.8.22-26.2
 - fix CVE-2025-5473 (RHEL-95696)
 
