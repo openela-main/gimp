@@ -75,7 +75,7 @@ Summary:        GNU Image Manipulation Program
 Name:           gimp
 Epoch:          2
 Version:        2.8.22
-Release:        %{?prerelprefix}26%{dotprerel}%{dotgitrev}%{?dist}.5
+Release:        %{?prerelprefix}26%{dotprerel}%{dotgitrev}%{?dist}.6
 
 # Compute some version related macros.
 # Ugly, need to get quoting percent signs straight.
@@ -226,7 +226,10 @@ Patch22: gimp-3.0.4-CVE-2026-0797.patch
 Patch23: gimp-3.0.4-CVE-2026-2044.patch
 Patch24: gimp-3.0.4-CVE-2026-2045.patch
 Patch25: gimp-3.0.4-CVE-2026-2048.patch
-
+Patch26: gimp-CVE-2026-4150.patch
+Patch27: gimp-CVE-2026-4153.patch
+Patch28: gimp-CVE-2026-4154.patch
+Patch29: gimp-CVE-2026-4887.patch
 # use external help browser directly if help browser plug-in is not built
 Patch100:       gimp-2.8.6-external-help-browser.patch
 
@@ -336,7 +339,10 @@ EOF
 %patch23 -p1 -b .CVE-2026-2044
 %patch24 -p1 -b .CVE-2026-2045
 %patch25 -p1 -b .CVE-2026-2048
-
+%patch26 -p1 -b .CVE-2026-4150
+%patch27 -p1 -b .CVE-2026-4153
+%patch28 -p1 -b .CVE-2026-4154
+%patch29 -p1 -b .CVE-2026-4887
 %if ! %{with helpbrowser}
 %patch100 -p1 -b .external-help-browser
 %endif
@@ -675,6 +681,12 @@ make check
 %endif
 
 %changelog
+* Tue May 12 2026 Josef Ridky <jridky@redhat.com> - 2:2.8.22-26.6
+- fix CVE-2026-4150
+- fix CVE-2026-4153
+- fix CVE-2026-4154
+- fix CVE-2026-4887
+
 * Thu Mar 12 2026 Josef Ridky <jridky@redhat.com> - 2:2.8.22-26.5
 - fix CVE-2026-0797
 - fix CVE-2026-2044
