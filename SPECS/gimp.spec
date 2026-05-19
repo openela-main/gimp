@@ -66,8 +66,8 @@ Summary:        GNU Image Manipulation Program
 Name:           gimp
 Epoch:          2
 Version:        3.0.4
-%global rel     1 
-Release:        %{rel}%{?dist}.5
+%global rel     4
+Release:        %{rel}%{?dist}.2
 # https://bugzilla.redhat.com/show_bug.cgi?id=2318369
 ExcludeArch:    s390x
 
@@ -253,24 +253,18 @@ Patch2:         gimp-2.10.12-default-font.patch
 # Modifications for RHEL-9 enablement
 Patch3:         gimp-3.0.4-glib.patch
 
-# CVE FIXES
+# CVEs
 Patch4:         gimp-3.0.4-CVE-2025-10920-10925-10934.patch
-Patch5:         gimp-3.0.4-CVE-2025-14422.patch
-Patch6:         gimp-3.0.4-CVE-2025-14423.patch
-Patch7:         gimp-3.0.4-CVE-2025-14424.patch
-Patch8:         gimp-3.0.4-CVE-2025-14425.patch
+Patch5:         gimp-3.0.4-CVE-2025-14424.patch
+Patch6:         gimp-3.0.4-CVE-2025-14425.patch
+Patch7:         gimp-3.0.4-CVE-2025-14423.patch
+Patch8:         gimp-3.0.4-CVE-2025-14422.patch
 Patch9:         gimp-3.0.4-CVE-2025-15059.patch
 Patch10:        gimp-3.0.4-CVE-2026-0797.patch
 Patch11:        gimp-3.0.4-CVE-2026-2044.patch
 Patch12:        gimp-3.0.4-CVE-2026-2045.patch
 Patch13:        gimp-3.0.4-CVE-2026-2047.patch
 Patch14:        gimp-3.0.4-CVE-2026-2048.patch
-Patch15:        gimp-CVE-2026-4150.patch
-Patch16:        gimp-CVE-2026-4151.patch
-Patch17:        gimp-CVE-2026-4152.patch
-Patch18:        gimp-CVE-2026-4153.patch
-Patch19:        gimp-CVE-2026-4154.patch
-Patch20:        gimp-CVE-2026-4887.patch
 
 # use external help browser directly if help browser plug-in is not built
 Patch100:       gimp-3.0.2-external-help-browser.patch
@@ -346,23 +340,17 @@ EOF
 %patch1 -p1 -b .cm-system-monitor
 %patch2 -p1 -b .font-default
 %patch3 -p1 -b .glib
-%patch4 -p1 -b .CVE-2025-10920-10925-10934
-%patch5 -p1 -b .CVE-2025-14422
-%patch6 -p1 -b .CVE-2025-14423
-%patch7 -p1 -b .CVE-2025-14424
-%patch8 -p1 -b .CVE-2025-14425
+%patch4 -p1 -b .CVE-2025-fixes
+%patch5 -p1 -b .CVE-2025-14424
+%patch6 -p1 -b .CVE-2025-14425
+%patch7 -p1 -b .CVE-2025-14423
+%patch8 -p1 -b .CVE-2025-14422
 %patch9 -p1 -b .CVE-2025-15059
 %patch10 -p1 -b .CVE-2026-0797
 %patch11 -p1 -b .CVE-2026-2044
 %patch12 -p1 -b .CVE-2026-2045
 %patch13 -p1 -b .CVE-2026-2047
 %patch14 -p1 -b .CVE-2026-2048
-%patch15 -p1 -b .CVE-2026-4150
-%patch16 -p1 -b .CVE-2026-4151
-%patch17 -p1 -b .CVE-2026-4152
-%patch18 -p1 -b .CVE-2026-4153
-%patch19 -p1 -b .CVE-2026-4154
-%patch20 -p1 -b .CVE-2026-4887
 
 %patch100 -p1 -b .external-help-browser
 
@@ -678,31 +666,26 @@ done
 %endif
 
 %changelog
-* Mon May 11 2026 Josef Ridky <jridky@redhat.com> - 2:3.0.4-1.5
-- fix CVE-2026-4150
-- fix CVE-2026-4151
-- fix CVE-2026-4152
-- fix CVE-2026-4153
-- fix CVE-2026-4154
-- fix CVE-2026-4887
+* Tue Mar 10 2026 Josef Ridky <jridky@redhat.com> - 2:3.0.4-4.2
+- bump spec
 
-* Mon Mar 09 2026 Josef Ridky <jridky@redhat.com> - 2:3.0.4-1.4
+* Mon Mar 09 2026 Josef Ridky <jridky@redhat.com> - 2:3.0.4-4.1
 - fix CVE-2026-0797
 - fix CVE-2026-2044
 - fix CVE-2026-2045
 - fix CVE-2026-2047
 - fix CVE-2026-2048
 
-* Thu Feb 12 2026 Josef Ridky <jridky@redhat.com> - 2:3.0.4-1.3
+* Tue Feb 10 2026 Josef Ridky <jridky@redhat.com> - 2:3.0.4-4
 - fix CVE-2025-15059
 
-* Tue Jan 20 2026 Josef Ridky <jridky@redhat.com> - 2:3.0.4-1.2
-- fix CVE-2025-14422
-- fix CVE-2025-14423
+* Tue Jan 20 2026 Josef Ridky <jridky@redhat.com> - 2:3.0.4-3
 - fix CVE-2025-14424
 - fix CVE-2025-14425
+- fix CVE-2025-14423
+- fix CVE-2025-14422
 
-* Mon Nov 24 2025 Josef Ridky <jridky@redhat.com> - 2:3.0.4-1.1
+* Thu Nov 20 2025 Josef Ridky <jridky@redhat.com> - 2:3.0.4-2
 - fix CVE-2025-10920
 - fix CVE-2025-10921
 - fix CVE-2025-10922
