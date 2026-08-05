@@ -67,7 +67,7 @@ Name:           gimp
 Epoch:          2
 Version:        3.0.4
 %global rel     4
-Release:        %{rel}%{?dist}.7
+Release:        %{rel}%{?dist}.9
 # https://bugzilla.redhat.com/show_bug.cgi?id=2318369
 ExcludeArch:    s390x
 
@@ -277,6 +277,15 @@ Patch21:        gimp-CVE-2026-58379.patch
 Patch22:        gimp-CVE-2026-58384.patch
 # https://gitlab.gnome.org/GNOME/gimp/-/commit/83699817
 Patch23:        gimp-CVE-2026-58380.patch
+# https://gitlab.gnome.org/GNOME/gimp/-/commit/abb3129a8ecb
+# https://gitlab.gnome.org/GNOME/gimp/-/commit/41ef331896882
+Patch24:        gimp-CVE-2026-66759.patch
+# https://gitlab.gnome.org/GNOME/gimp/-/commit/b01d06315352b56928625e480dd22b3876721e2c
+# https://gitlab.gnome.org/GNOME/gimp/-/commit/bcde5da5e350c9c6100a579ba2b762e007c78150
+Patch25:        gimp-CVE-2026-66758.patch
+# https://gitlab.gnome.org/GNOME/gimp/-/commit/691785113a
+# https://gitlab.gnome.org/GNOME/gimp/-/commit/7dff816fbd
+Patch26:        gimp-CVE-2026-42169.patch
 
 # use external help browser directly if help browser plug-in is not built
 Patch100:       gimp-3.0.2-external-help-browser.patch
@@ -372,6 +381,9 @@ EOF
 %patch21 -p1 -b .CVE-2026-58379
 %patch22 -p1 -b .CVE-2026-58384
 %patch23 -p1 -b .CVE-2026-58380
+%patch24 -p1 -b .CVE-2026-66759
+%patch25 -p1 -b .CVE-2026-66758
+%patch26 -p1 -b .CVE-2026-42169
 
 %patch100 -p1 -b .external-help-browser
 
@@ -687,6 +699,17 @@ done
 %endif
 
 %changelog
+* Tue Aug 04 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 2:3.0.4-4.9
+- fix CVE-2026-42169
+
+* Tue Jul 28 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 2:3.0.4-4.8
+- fix CVE-2026-66758
+- fix CVE-2026-66759
+
+* Mon Jul 13 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 2:3.0.4-4.7
+- fix CVE-2026-58380
+- Resolves: RHEL-192383
+
 * Fri Jul 10 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 2:3.0.4-4.6
 - fix CVE-2026-58384
 - Resolves: RHEL-192536
