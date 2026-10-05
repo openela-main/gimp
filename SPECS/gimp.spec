@@ -67,7 +67,7 @@ Name:           gimp
 Epoch:          2
 Version:        3.0.4
 %global rel     4
-Release:        %{rel}%{?dist}.10
+Release:        %{rel}%{?dist}.14
 # https://bugzilla.redhat.com/show_bug.cgi?id=2318369
 ExcludeArch:    s390x
 
@@ -295,6 +295,15 @@ Patch32:        gimp-CVE-2026-18305.patch
 Patch33:        gimp-CVE-2026-18306.patch
 Patch34:        gimp-CVE-2026-18307.patch
 Patch35:        gimp-CVE-2026-18308.patch
+# https://gitlab.gnome.org/GNOME/gimp/-/commit/123d6360b8d7e2a00a9d913889ee9cdca88e2380
+Patch36:        gimp-CVE-2026-90948.patch
+# https://gitlab.gnome.org/GNOME/gimp/-/commit/8a680c38fe84d529255e6b2916951ae7c480ed2c
+Patch37:        gimp-CVE-2026-90947.patch
+# https://gitlab.gnome.org/GNOME/gimp/-/commit/6b1e668699ebebc35152ad6c3db4b445cd78b7df
+# https://gitlab.gnome.org/GNOME/gimp/-/commit/147b11937f2437ff1b5730d0be44bbf1fbacdae7
+Patch38:        gimp-CVE-2026-92248.patch
+# https://gitlab.gnome.org/GNOME/gimp/-/commit/3b5e12f8eb2734f954559fbdaf27d03765cea2e5
+Patch39:        gimp-CVE-2026-97185.patch
 
 # use external help browser directly if help browser plug-in is not built
 Patch100:       gimp-3.0.2-external-help-browser.patch
@@ -402,6 +411,10 @@ EOF
 %patch33 -p1 -b .CVE-2026-18306
 %patch34 -p1 -b .CVE-2026-18307
 %patch35 -p1 -b .CVE-2026-18308
+%patch36 -p1 -b .CVE-2026-90948
+%patch37 -p1 -b .CVE-2026-90947
+%patch38 -p1 -b .CVE-2026-92248
+%patch39 -p1 -b .CVE-2026-97185
 
 %patch100 -p1 -b .external-help-browser
 
@@ -717,6 +730,18 @@ done
 %endif
 
 %changelog
+* Thu Sep 24 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 2:3.0.4-4.14
+- fix CVE-2026-97185
+
+* Tue Sep 15 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 2:3.0.4-4.13
+- fix CVE-2026-92248
+
+* Mon Sep 14 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 2:3.0.4-4.12
+- fix CVE-2026-90947
+
+* Mon Sep 14 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 2:3.0.4-4.11
+- fix CVE-2026-90948
+
 * Mon Aug 24 2026 Josef Ridky <jridky@redhat.com> - 2:3.0.4-4.10
 - fix CVE-2026-59090
 - fix CVE-2026-18301
