@@ -67,7 +67,7 @@ Name:           gimp
 Epoch:          2
 Version:        3.0.4
 %global rel     4
-Release:        %{rel}%{?dist}.14
+Release:        %{rel}%{?dist}.15
 # https://bugzilla.redhat.com/show_bug.cgi?id=2318369
 ExcludeArch:    s390x
 
@@ -304,6 +304,11 @@ Patch37:        gimp-CVE-2026-90947.patch
 Patch38:        gimp-CVE-2026-92248.patch
 # https://gitlab.gnome.org/GNOME/gimp/-/commit/3b5e12f8eb2734f954559fbdaf27d03765cea2e5
 Patch39:        gimp-CVE-2026-97185.patch
+Patch40:        gimp-CVE-2026-106062.patch
+Patch41:        gimp-CVE-2026-112257.patch
+Patch42:        gimp-CVE-2026-112258.patch
+Patch43:        gimp-CVE-2026-112260.patch
+Patch44:        gimp-CVE-2026-112261.patch
 
 # use external help browser directly if help browser plug-in is not built
 Patch100:       gimp-3.0.2-external-help-browser.patch
@@ -415,6 +420,11 @@ EOF
 %patch37 -p1 -b .CVE-2026-90947
 %patch38 -p1 -b .CVE-2026-92248
 %patch39 -p1 -b .CVE-2026-97185
+%patch40 -p1 -b .CVE-2026-106062
+%patch41 -p1 -b .CVE-2026-112257
+%patch42 -p1 -b .CVE-2026-112258
+%patch43 -p1 -b .CVE-2026-112260
+%patch44 -p1 -b .CVE-2026-112261
 
 %patch100 -p1 -b .external-help-browser
 
@@ -730,6 +740,13 @@ done
 %endif
 
 %changelog
+* Thu Oct 22 2026 Josef Ridky <jridky@redhat.com> - 2:3.0.4-4.15
+- fix CVE-2026-106062
+- fix CVE-2026-112257
+- fix CVE-2026-112258
+- fix CVE-2026-112260
+- fix CVE-2026-112261
+
 * Thu Sep 24 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 2:3.0.4-4.14
 - fix CVE-2026-97185
 
