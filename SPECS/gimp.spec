@@ -75,7 +75,7 @@ Summary:        GNU Image Manipulation Program
 Name:           gimp
 Epoch:          2
 Version:        2.8.22
-Release:        %{?prerelprefix}26%{dotprerel}%{dotgitrev}%{?dist}.9
+Release:        %{?prerelprefix}26%{dotprerel}%{dotgitrev}%{?dist}.10
 
 # Compute some version related macros.
 # Ugly, need to get quoting percent signs straight.
@@ -243,6 +243,7 @@ Patch39: gimp-CVE-2026-90947.patch
 Patch40: gimp-CVE-2026-90948.patch
 Patch41: gimp-CVE-2026-92248.patch
 Patch42: gimp-CVE-2026-97185.patch
+Patch43: gimp-CVE-2026-112257.patch
 # use external help browser directly if help browser plug-in is not built
 Patch100:       gimp-2.8.6-external-help-browser.patch
 
@@ -369,6 +370,8 @@ EOF
 %patch40 -p1 -b .CVE-2026-90948
 %patch41 -p1 -b .CVE-2026-92248
 %patch42 -p1 -b .CVE-2026-97185
+%patch43 -p1 -b .CVE-2026-112257
+
 %if ! %{with helpbrowser}
 %patch100 -p1 -b .external-help-browser
 %endif
@@ -707,6 +710,10 @@ make check
 %endif
 
 %changelog
+* Thu Oct 22 2026 Josef Ridky <jridky@redhat.com> - 2:2.8.22-26.10
+- fix CVE-2026-112257
+- modify fix for CVE-2026-4154
+
 * Wed Oct 14 2026 Josef Ridky <jridky@redhat.com> - 2:2.8.22-26.9
 - fix CVE-2026-90947
 - fix CVE-2026-90948
