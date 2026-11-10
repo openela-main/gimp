@@ -66,8 +66,8 @@ Summary:        GNU Image Manipulation Program
 Name:           gimp
 Epoch:          2
 Version:        3.0.4
-%global rel     4
-Release:        %{rel}%{?dist}.15
+%global rel     8
+Release:        %{rel}%{?dist}
 # https://bugzilla.redhat.com/show_bug.cgi?id=2318369
 ExcludeArch:    s390x
 
@@ -271,20 +271,11 @@ Patch17:        gimp-CVE-2026-4152.patch
 Patch18:        gimp-CVE-2026-4153.patch
 Patch19:        gimp-CVE-2026-4154.patch
 Patch20:        gimp-CVE-2026-4887.patch
-# https://github.com/GNOME/gimp/commit/b630f167ba7b73b17e7dd6df1fee1623f8324575
 Patch21:        gimp-CVE-2026-58379.patch
-# https://gitlab.gnome.org/GNOME/gimp/-/commit/da29e217
-Patch22:        gimp-CVE-2026-58384.patch
-# https://gitlab.gnome.org/GNOME/gimp/-/commit/83699817
-Patch23:        gimp-CVE-2026-58380.patch
-# https://gitlab.gnome.org/GNOME/gimp/-/commit/abb3129a8ecb
-# https://gitlab.gnome.org/GNOME/gimp/-/commit/41ef331896882
+Patch22:        gimp-CVE-2026-58380.patch
+Patch23:        gimp-CVE-2026-58384.patch
 Patch24:        gimp-CVE-2026-66759.patch
-# https://gitlab.gnome.org/GNOME/gimp/-/commit/b01d06315352b56928625e480dd22b3876721e2c
-# https://gitlab.gnome.org/GNOME/gimp/-/commit/bcde5da5e350c9c6100a579ba2b762e007c78150
 Patch25:        gimp-CVE-2026-66758.patch
-# https://gitlab.gnome.org/GNOME/gimp/-/commit/691785113a
-# https://gitlab.gnome.org/GNOME/gimp/-/commit/7dff816fbd
 Patch26:        gimp-CVE-2026-42169.patch
 Patch27:        gimp-CVE-2026-59090.patch
 Patch28:        gimp-CVE-2026-18301.patch
@@ -295,20 +286,6 @@ Patch32:        gimp-CVE-2026-18305.patch
 Patch33:        gimp-CVE-2026-18306.patch
 Patch34:        gimp-CVE-2026-18307.patch
 Patch35:        gimp-CVE-2026-18308.patch
-# https://gitlab.gnome.org/GNOME/gimp/-/commit/123d6360b8d7e2a00a9d913889ee9cdca88e2380
-Patch36:        gimp-CVE-2026-90948.patch
-# https://gitlab.gnome.org/GNOME/gimp/-/commit/8a680c38fe84d529255e6b2916951ae7c480ed2c
-Patch37:        gimp-CVE-2026-90947.patch
-# https://gitlab.gnome.org/GNOME/gimp/-/commit/6b1e668699ebebc35152ad6c3db4b445cd78b7df
-# https://gitlab.gnome.org/GNOME/gimp/-/commit/147b11937f2437ff1b5730d0be44bbf1fbacdae7
-Patch38:        gimp-CVE-2026-92248.patch
-# https://gitlab.gnome.org/GNOME/gimp/-/commit/3b5e12f8eb2734f954559fbdaf27d03765cea2e5
-Patch39:        gimp-CVE-2026-97185.patch
-Patch40:        gimp-CVE-2026-106062.patch
-Patch41:        gimp-CVE-2026-112257.patch
-Patch42:        gimp-CVE-2026-112258.patch
-Patch43:        gimp-CVE-2026-112260.patch
-Patch44:        gimp-CVE-2026-112261.patch
 
 # use external help browser directly if help browser plug-in is not built
 Patch100:       gimp-3.0.2-external-help-browser.patch
@@ -402,8 +379,8 @@ EOF
 %patch19 -p1 -b .CVE-2026-4154
 %patch20 -p1 -b .CVE-2026-4887
 %patch21 -p1 -b .CVE-2026-58379
-%patch22 -p1 -b .CVE-2026-58384
-%patch23 -p1 -b .CVE-2026-58380
+%patch22 -p1 -b .CVE-2026-58380
+%patch23 -p1 -b .CVE-2026-58384
 %patch24 -p1 -b .CVE-2026-66759
 %patch25 -p1 -b .CVE-2026-66758
 %patch26 -p1 -b .CVE-2026-42169
@@ -416,15 +393,6 @@ EOF
 %patch33 -p1 -b .CVE-2026-18306
 %patch34 -p1 -b .CVE-2026-18307
 %patch35 -p1 -b .CVE-2026-18308
-%patch36 -p1 -b .CVE-2026-90948
-%patch37 -p1 -b .CVE-2026-90947
-%patch38 -p1 -b .CVE-2026-92248
-%patch39 -p1 -b .CVE-2026-97185
-%patch40 -p1 -b .CVE-2026-106062
-%patch41 -p1 -b .CVE-2026-112257
-%patch42 -p1 -b .CVE-2026-112258
-%patch43 -p1 -b .CVE-2026-112260
-%patch44 -p1 -b .CVE-2026-112261
 
 %patch100 -p1 -b .external-help-browser
 
@@ -740,26 +708,7 @@ done
 %endif
 
 %changelog
-* Thu Oct 22 2026 Josef Ridky <jridky@redhat.com> - 2:3.0.4-4.15
-- fix CVE-2026-106062
-- fix CVE-2026-112257
-- fix CVE-2026-112258
-- fix CVE-2026-112260
-- fix CVE-2026-112261
-
-* Thu Sep 24 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 2:3.0.4-4.14
-- fix CVE-2026-97185
-
-* Tue Sep 15 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 2:3.0.4-4.13
-- fix CVE-2026-92248
-
-* Mon Sep 14 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 2:3.0.4-4.12
-- fix CVE-2026-90947
-
-* Mon Sep 14 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 2:3.0.4-4.11
-- fix CVE-2026-90948
-
-* Mon Aug 24 2026 Josef Ridky <jridky@redhat.com> - 2:3.0.4-4.10
+* Mon Aug 24 2026 Josef Ridky <jridky@redhat.com> - 2:3.0.4-8
 - fix CVE-2026-59090
 - fix CVE-2026-18301
 - fix CVE-2026-18302
@@ -770,41 +719,29 @@ done
 - fix CVE-2026-18307
 - fix CVE-2026-18308
 
-* Tue Aug 04 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 2:3.0.4-4.9
+* Thu Aug 06 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 2:3.0.4-7.1.1.1
 - fix CVE-2026-42169
 
-* Tue Jul 28 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 2:3.0.4-4.8
+* Thu Aug 06 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 2:3.0.4-7.1.1
 - fix CVE-2026-66758
+
+* Thu Aug 06 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 2:3.0.4-7.1
 - fix CVE-2026-66759
 
-* Mon Jul 13 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 2:3.0.4-4.7
-- fix CVE-2026-58380
-- Resolves: RHEL-192383
-
-* Fri Jul 10 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 2:3.0.4-4.6
-- fix CVE-2026-58384
-- Resolves: RHEL-192536
-
-* Sat Jul 04 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 2:3.0.4-4.5
+* Mon Jul 13 2026 Josef Ridky <jridky@redhat.com> - 2:3.0.4-7
 - fix CVE-2026-58379
-- Resolves: RHEL-192170
+- fix CVE-2026-58380
+- fix CVE-2026-58384
 
-* Mon May 11 2026 Josef Ridky <jridky@redhat.com> - 2:3.0.4-4.4
-- fix CVE-2026-4150 - align with Y-stream
+* Mon May 11 2026 Josef Ridky <jridky@redhat.com> - 2:3.0.4-6
+- fix CVE-2026-4150
 - fix CVE-2026-4151
 - fix CVE-2026-4152
 - fix CVE-2026-4153
 - fix CVE-2026-4154
 - fix CVE-2026-4887
 
-* Tue May 05 2026 RHEL Packaging Agent <jotnar@redhat.com> - 2:3.0.4-4.3
-- fix CVE-2026-4150
-- Resolves: RHEL-167738
-
-* Tue Mar 10 2026 Josef Ridky <jridky@redhat.com> - 2:3.0.4-4.2
-- bump spec
-
-* Mon Mar 09 2026 Josef Ridky <jridky@redhat.com> - 2:3.0.4-4.1
+* Fri Mar 06 2026 Josef Ridky <jridky@redhat.com> - 2:3.0.4-5
 - fix CVE-2026-0797
 - fix CVE-2026-2044
 - fix CVE-2026-2045
