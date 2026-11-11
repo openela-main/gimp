@@ -67,7 +67,7 @@ Name:           gimp
 Epoch:          2
 Version:        3.0.4
 %global rel     8
-Release:        %{rel}%{?dist}
+Release:        %{rel}%{?dist}.6
 # https://bugzilla.redhat.com/show_bug.cgi?id=2318369
 ExcludeArch:    s390x
 
@@ -286,6 +286,20 @@ Patch32:        gimp-CVE-2026-18305.patch
 Patch33:        gimp-CVE-2026-18306.patch
 Patch34:        gimp-CVE-2026-18307.patch
 Patch35:        gimp-CVE-2026-18308.patch
+Patch36:        gimp-CVE-2026-92248.patch
+# https://gitlab.gnome.org/GNOME/gimp/-/commit/8a680c38fe84d529255e6b2916951ae7c480ed2c
+Patch37:        gimp-CVE-2026-90947.patch
+# https://gitlab.gnome.org/GNOME/gimp/-/commit/123d6360b8d7e2a00a9d913889ee9cdca88e2380
+Patch38:        gimp-CVE-2026-90948.patch
+# https://gitlab.gnome.org/GNOME/gimp/-/commit/3b5e12f8eb2734f954559fbdaf27d03765cea2e5.patch
+Patch39:        gimp-CVE-2026-97185.patch
+Patch40:        gimp-CVE-2026-106062.patch
+Patch41:        gimp-CVE-2026-112257.patch
+Patch42:        gimp-CVE-2026-112258.patch
+Patch43:        gimp-CVE-2026-112260.patch
+Patch44:        gimp-CVE-2026-112261.patch
+# https://gitlab.gnome.org/GNOME/gimp/-/commit/14b2365ecae041e8b50c4a08f9282edb65149439
+Patch45:        gimp-CVE-2026-119528.patch
 
 # use external help browser directly if help browser plug-in is not built
 Patch100:       gimp-3.0.2-external-help-browser.patch
@@ -393,6 +407,16 @@ EOF
 %patch33 -p1 -b .CVE-2026-18306
 %patch34 -p1 -b .CVE-2026-18307
 %patch35 -p1 -b .CVE-2026-18308
+%patch36 -p1 -b .CVE-2026-92248
+%patch37 -p1 -b .CVE-2026-90947
+%patch38 -p1 -b .CVE-2026-90948
+%patch39 -p1 -b .CVE-2026-97185
+%patch40 -p1 -b .CVE-2026-106062
+%patch41 -p1 -b .CVE-2026-112257
+%patch42 -p1 -b .CVE-2026-112258
+%patch43 -p1 -b .CVE-2026-112260
+%patch44 -p1 -b .CVE-2026-112261
+%patch45 -p1 -b .CVE-2026-119528
 
 %patch100 -p1 -b .external-help-browser
 
@@ -708,6 +732,28 @@ done
 %endif
 
 %changelog
+* Sat Oct 31 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 2:3.0.4-8.6
+- CVE-2026-119528 gimp: gimp: stack buffer overflow in PSD image resource header loader
+
+* Thu Oct 22 2026 Josef Ridky <jridky@redhat.com> - 2:3.0.4-8.5
+- fix CVE-2026-106062
+- fix CVE-2026-112257
+- fix CVE-2026-112258
+- fix CVE-2026-112260
+- fix CVE-2026-112261
+
+* Thu Sep 24 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 2:3.0.4-8.4
+- fix CVE-2026-97185
+
+* Thu Sep 17 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 2:3.0.4-8.3
+- fix CVE-2026-90948
+
+* Thu Sep 17 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 2:3.0.4-8.2
+- fix CVE-2026-90947
+
+* Tue Sep 15 2026 RHEL Packaging Agent <redhat-ymir-agent@redhat.com> - 2:3.0.4-8.1
+- fix CVE-2026-92248
+
 * Mon Aug 24 2026 Josef Ridky <jridky@redhat.com> - 2:3.0.4-8
 - fix CVE-2026-59090
 - fix CVE-2026-18301
